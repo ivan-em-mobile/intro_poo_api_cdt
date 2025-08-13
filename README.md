@@ -1,4 +1,4 @@
-# Intro_POO_API_CDT
+# intro_poo_api_cdt
 Este repositório é seu guia completo para os **fundamentos da Programação Orientada a Objetos (POO)** e o **uso prático de APIs**, tudo com a **Python**.
 
 * **Programação Orientada a Objetos (POO):** Explore os pilares da POO – **classes**, **objetos**, **herança**, **polimorfismo** e **encapsulamento**. Aprenda a organizar seu código de forma lógica e eficiente, criando programas mais fáceis de entender, manter e escalar. 
