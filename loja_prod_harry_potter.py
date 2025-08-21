@@ -1,3 +1,8 @@
+"""
+Exercicio de POO, com o intuito de demonstrar a herança e polimorfismo em POO. 
+Para isso, vamos criar uma loja de produtos do universo Harry Potter.
+"""
+
 # --- Classe Base: ProdutoHogwarts ---
 class ProdutoHogwarts:
     def __init__(self, nome, preco, ano_lancamento, unidade_monetaria="Galeões"):

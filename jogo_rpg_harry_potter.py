@@ -1,3 +1,8 @@
+"""
+Exercicio de POO, com o intuito de demonstrar a herança e polimorfismo em POO. 
+Para isso, vamos criar um jogo de RPG do universo Harry Potter.
+"""
+
 # --- Classe Base: Personagem ---
 class Personagem:
     def __init__(self, nome, vida, ataque):
