@@ -1,3 +1,9 @@
+"""
+its_my_dog, como nome orginal do arquivo
+com o intuito de demonstrar POO por uma 
+explicação de classe - animal(dog).
+"""
+
 # Definindo a classe Cachorro
 class Cachorro:
     # O método __init__ é um construtor.

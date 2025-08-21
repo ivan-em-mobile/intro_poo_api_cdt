@@ -1,3 +1,8 @@
+"""
+dog_by_services, como nome orginal do arquivo
+com o intuito de demonstrar a herança em POO.
+"""
+
 class Animal:
     def __init__(self, nome, especie):
         self.nome = nome
