@@ -1,4 +1,8 @@
 '''
+##Atividade desafio, criar um sistema de cadastro de clientes utilizando POO
+#  e persistência de dados em arquivo JSON.
+
+##Explicação
 #atributos -> Dados
 ##falta os seguintes atributos: telefone, email, cpf
 ##falta os seguintes métodos: atualizar dados do cliente
