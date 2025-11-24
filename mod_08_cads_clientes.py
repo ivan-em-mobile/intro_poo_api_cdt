@@ -224,6 +224,12 @@ def menu_principal():
         print("2. Listar Clientes Cadastrados")
         print("3. Atualizar Dados de Cliente") # Nova Opção
         print("4. Sair do Sistema")
+
+# Desafio cria no menu a opção de 
+# 4. Excluir Cliente e 
+# Incluir a opção 
+# 0. Sair do Sistema
+
         
         opcao = input("Escolha uma opção (1, 2, 3 ou 4): ").strip()
         
