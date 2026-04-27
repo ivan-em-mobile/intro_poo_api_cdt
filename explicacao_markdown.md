@@ -1,5 +1,5 @@
 
-# 🚀 Tutorial Completo: Tratamento de Erros (4 Práticas)
+# 🚀 Tutorial Completo: Tratamento de Erros
 
 ## 1. O Básico: Divisão Segura
 Captura erros de matemática e de digitação.
