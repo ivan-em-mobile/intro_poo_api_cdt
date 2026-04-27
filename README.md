@@ -1,3 +1,5 @@
+### **Guia de Atividade: Tratamento de Erros (Módulo 09)**
+A lidar com `Exceptions` (erros). Usaremos a estrutura `try`, `except`, `else` e `finally` para que o nosso código seja "à prova de erros".
 
 # 🚀 Tutorial Completo: Tratamento de Erros
 
