@@ -60,7 +60,7 @@ class Celular:
 meu_celular = Celular("Samsung", "S24")
 
 # CASO 1: Tudo certo (passando o número 10)
-meu_celular.fazer_chamada(10)
+meu_celular.fazer_chamada(5)
 
 # CASO 2: Erro propositado (passando uma palavra em vez de número)
-meu_celular.fazer_chamada("muito")
+meu_celular.fazer_chamada("10")

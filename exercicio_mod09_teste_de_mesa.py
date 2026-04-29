@@ -60,4 +60,4 @@ class Celular:
 meu_celular = Celular("Samsung", "S24")
 
 # Teste com erro de valor (mandando uma letra onde devia ser número)
-meu_celular.fazer_chamada("Dez")
+meu_celular.fazer_chamada("15")
