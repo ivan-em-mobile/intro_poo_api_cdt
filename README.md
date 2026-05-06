@@ -1,167 +1,214 @@
-### **Guia de Atividade: Tratamento de Erros (Módulo 09)**
-A lidar com `Exceptions` (erros). Usaremos a estrutura `try`, `except`, `else` e `finally` para que o nosso código seja "à prova de erros".
+# 🚀 Curso de Python: POO, Tratamento de Erros e APIs
 
-# 🚀 Tutorial Completo: Tratamento de Erros
+Este guia foi elaborado para consolidar os fundamentos da Programação Orientada a Objetos (POO), o tratamento rigoroso de exceções e a integração com serviços externos via APIs brasileiras. É um guia prático para dominar a segurança do código com **Tratamento de Exceções** (Módulo 09) e a comunicação externa via **APIs** (Módulo 10)
 
-## 1. explicacao_mod09.py
-Captura erros de matemática e de digitação.
+---
+## 🌐 Módulo 10: Introdução a API
+As APIs permitem que o Python receba dados de outros sites (formato JSON).
+Uma **API (Application Programming Interface)** permite que seu código requisite informações de outros servidores na internet.
+
+### 📦 Instalação do Requests
+Antes de rodar os códigos abaixo, você deve instalar a biblioteca no terminal:
+```bash
+pip install requests
+```
+
+### 1. Consulta de Endereço (ViaCEP)
+Busca dados reais de logradouro e cidade usando um CEP.
+```python
+
+import requests
+
+def consulta_cep(cep):
+    url = f'[https://viacep.com.br/ws/](https://viacep.com.br/ws/){cep}/json/'
+    resposta = requests.get(url)
+
+    if resposta.status_code == 200:
+        return resposta.json()
+    else:
+        return 'Erro na Consulta. ⚠'
+
+print('=== Consulta de CEP ===')
+meu_cep = '02849000'
+resultado = consulta_cep(meu_cep)
+
+if isinstance(resultado, dict):
+    print(f"Endereço: {resultado.get('logradouro')}")
+    print(f"Bairro: {resultado.get('bairro')}")
+    print(f"Cidade: {resultado.get('localidade')}")
+```
+
+### 2. Cotação do Dólar (AwesomeAPI)
+Obtém o valor do Dólar em tempo real e faz a conversão monetária.
+```python
+
+import requests
+
+def obter_cotacao_dolar():
+    url = "[https://economia.awesomeapi.com.br/last/USD-BRL](https://economia.awesomeapi.com.br/last/USD-BRL)"
+    try:
+        resposta = requests.get(url)
+        dados = resposta.json()
+        valor_dolar = dados['USDBRL']['bid']
+        return float(valor_dolar)
+    except Exception as e:
+        print(f"Erro ao buscar dados: {e}")
+        return None
+
+print("=== Conversor de Moedas Real ===")
+cotacao = obter_cotacao_dolar()
+
+if cotacao:
+    print(f"Cotação atual: R$ {cotacao:.2f}")
+    valor_usd = float(input("Quantos dólares deseja converter? US$ "))
+    print(f"Total: R$ {valor_usd * cotacao:.2f}")
+```
+------
+
+## 🛠️ Módulo 09: Tratamento de Erros (Exceptions)
+Neste módulo, aprendemos a usar `try`, `except`, `else` e `finally` para evitar que o programa pare de funcionar ao encontrar um erro.
+
+### 1. Captura de Erros Matemáticos (`explicacao_mod09.py`)
+Focado em evitar erros de divisão por zero e entradas de texto onde deveriam ser números.
+
 ```python
 def aula_tratamento_erros():
     print("--- Início da Aula de Exceções ---")
-    
     try:
-        # 1. Tentamos obter dados do utilizador
-        numerador = int(input("Digita o numerador (número em cima): "))
-        denominador = int(input("Digita o denominador (número em baixo): "))
-        
-        # 2. Tentamos realizar a operação
+        numerador = int(input("Digita o numerador: "))
+        denominador = int(input("Digita o denominador: "))
         resultado = numerador / denominador
-
     except ValueError:
-        # Este bloco corre se o utilizador digitar algo que não seja um número inteiro
-        print("Erro: Por favor, digita apenas números inteiros!")
-
+        print("Erro: Digite apenas números inteiros!")
     except ZeroDivisionError:
-        # Este bloco corre se o denominador for zero
-        print("Erro: Matemática básica! Não pode dividir um número por zero.")
-
+        print("Erro: Não é possível dividir por zero.")
     except Exception as erro:
-        # Este é um 'apanha-tudo' para erros inesperados
-        print(f"Ocorreu um erro inesperado: {erro}")
-
+        print(f"Erro inesperado: {erro}")
     else:
-        # Só corre se o bloco 'try' NÃO disparar nenhum erro
-        print(f"Sucesso! O resultado da divisão é: {resultado}")
-
+        print(f"Sucesso! Resultado: {resultado}")
     finally:
-        # Corre SEMPRE, independentemente de ter havido erro ou não
-        print("--- Fim da operação de tratamento ---")
+        print("--- Operação finalizada ---")
 
-# Executar a função
 aula_tratamento_erros()
 ```
 
-## 2. exercicio_mod09_teste_de_mesa.py
-Trata o erro quando o utilizador escreve o tempo por extenso.
+### 2. Teste de Mesa com Classes (`exercicio_mod09_teste_de_mesa.py`)
+Trata erros quando o usuário digita a duração de uma chamada por extenso.
 ```python
 class Celular:
     def __init__(self, marca, modelo):
-        self.marca = marca
-        self.modelo = modelo
-        self.ligado = True # Vamos começar com ele ligado
-        self.bateria = 100 
+        self.marca, self.modelo, self.bateria = marca, modelo, 100
 
     def fazer_chamada(self, duracao):
         try:
-            # Tenta converter a duração para número (pode dar erro se for texto)
-            gasto = int(duracao) * 2 
-            
+            gasto = int(duracao) * 2
             if self.bateria >= gasto:
                 self.bateria -= gasto
                 print(f"Chamada de {duracao} min efetuada! Bateria: {self.bateria}%")
             else:
-                print("Bateria insuficiente para esta chamada.")
-
+                print("Bateria insuficiente.")
         except ValueError:
-            # Se o utilizador passar "muito tempo" em vez de "10"
-            print("Erro: A duração da chamada deve ser um número inteiro!")
-            
+            print("Erro: A duração deve ser um número inteiro!")
         except TypeError:
-            # Se o atributo bateria estiver corrompido (ex: for uma string)
-            print("Erro crítico: O sistema de bateria encontrou um erro de tipo.")
-            
-        except Exception as e:
-            # Qualquer outro erro inesperado
-            print(f"Ocorreu um erro desconhecido: {e}")
+            print("Erro crítico: Sistema de bateria encontrou erro de tipo.")
 
-# --- IMPLEMENTAÇÃO ---
 meu_celular = Celular("Samsung", "S24")
-
-# Teste com erro de valor (mandando uma letra onde devia ser número)
-meu_celular.fazer_chamada("Dez")
+meu_celular.fazer_chamada("Dez") # Simula erro de valor
 ```
 
-## 3. exercicio_mod09_com_usuario.py
-Usa o `TypeError` para evitar que o sistema tente subtrair texto de números.
+### 3. Evitando Conflitos de Tipos (`exercicio_mod09_com_usuario.py`)
+Usa `TypeError` para impedir subtrações entre textos e números.
 ```python
-class Celular:
-    def __init__(self, marca, modelo):
-        self.marca = marca
-        self.modelo = modelo
-        self.ligado = True
-        self.bateria = 100
+# Focado no uso do bloco else e finally para logs de sistema
+def iniciar_chamada(celular, custo):
+    try:
+        celular.bateria -= custo
+    except TypeError:
+        print("ERRO: Você tentou usar um valor que não é um número!")
+    else:
+        print(f"Chamada concluída! Bateria restante: {celular.bateria}%")
+    finally:
+        print("Sistema de chamadas finalizado.")
+```
 
-    def fazer_chamada(self, custo_bateria):
-        print(f"\n--- Iniciando chamada no {self.modelo} ---")
-        
-        try:
-            # PASSO 1: Tentar fazer a conta
-            # Se 'custo_bateria' não for um número, o Python gera um erro aqui!
-            self.bateria -= custo_bateria
-            
-        except TypeError:
-            # PASSO 2: Capturar o erro se o valor for inválido (ex: uma letra)
-            print("ERRO: Você tentou usar um valor que não é um número!")
-            print("Dica: Use números inteiros para o custo da bateria.")
-            
+### 4. Validação de Nível de Bateria (`exercicio_mod09_teste_com_programador.py`)
+Mistura `float` com lógica `if/elif` para validar intervalos de 0 a 100[cite: 2].
+```python
+def verificar_status(nivel_texto):
+    try:
+        nivel = float(nivel_texto)
+        if nivel < 0 or nivel > 100:
+            print("Aviso: Digite um valor entre 0 e 100.")
+        elif nivel < 15:
+            print(f"⚠️ Bateria em {nivel}%! Carregue o telemóvel.")
         else:
-            # PASSO 3: Se a conta deu certo, avisamos o utilizador
-            print(f"Chamada concluída com sucesso!")
-            print(f"Bateria restante: {self.bateria}%")
-            
-        finally:
-            # PASSO 4: Acontece sempre (bom para logs ou fechar processos)
-            print("Sistema de chamadas finalizado.")
-
-# --- TESTANDO NA PRÁTICA ---
-
-meu_celular = Celular("Samsung", "S24")
-
-# CASO 1: Tudo certo (passando o número 10)
-meu_celular.fazer_chamada(10)
-
-# CASO 2: Erro propositado (passando uma palavra em vez de número)
-meu_celular.fazer_chamada("muito")
+            print(f"📱 Bateria em {nivel}%. Status normal.")
+    except ValueError:
+        print("Erro Crítico: Entrada inválida.")
 ```
 
-## 4. exercicio_mod09_teste_com_programador.py
-Mistura tratamento de `float` com lógica de decisão `if/elif/else`.
+---
+
+## 🛠️ Módulo 09: Tratamento de Erros (Exceptions)
+Aprender a gerir erros é essencial para criar software robusto. Utilizamos a estrutura `try`, `except`, `else` e `finally`.
+
+### 1. Explicação Básica (`explicacao_mod09.py`)
+Captura erros de lógica matemática e entradas inválidas.
+```python
+def aula_tratamento_erros():
+    print("--- Início da Aula de Exceções ---")
+    try:
+        numerador = int(input("Digita o numerador: "))
+        denominador = int(input("Digita o denominador: "))
+        resultado = numerador / denominador
+    except ValueError:
+        print("Erro: Por favor, digita apenas números inteiros!")
+    except ZeroDivisionError:
+        print("Erro: Não pode dividir um número por zero.")
+    except Exception as erro:
+        print(f"Ocorreu um erro inesperado: {erro}")
+    else:
+        print(f"Sucesso! O resultado é: {resultado}")
+    finally:
+        print("--- Fim da operação ---")
+
+aula_tratamento_erros()
+```
+
+### 2. POO e Exceções (`exercicio_mod09_bateria.py`)
+Simulação de um sistema de celular lidando com dados corrompidos ou entradas de texto.
 ```python
 class Celular:
     def __init__(self, marca, modelo):
         self.marca = marca
         self.modelo = modelo
+        self.bateria = 100 
 
-    def verificar_status(self):
+    def fazer_chamada(self, duracao):
         try:
-            # 1. Tentamos ler o que o utilizador digita
-            entrada = input(f"Quanto de bateria tem o seu {self.modelo}? ")
-            
-            # 2. Convertemos para número (aqui pode ocorrer o erro!)
-            nivel = float(entrada)
-
-            # 3. Lógica de decisão baseada nos teus requisitos
-            if nivel < 0 or nivel > 100:
-                print("Aviso: Por favor, digite um valor entre 0 e 100.")
-            
-            elif nivel < 15:
-                print(f"⚠️ Bateria em {nivel}%! Por favor, coloque o telemóvel a carregar.")
-            
-            elif nivel > 85:
-                print(f"✅ Bateria em {nivel}%. Está com carga máxima, pronto para uso intenso!")
-            
+            gasto = int(duracao) * 2 
+            if self.bateria >= gasto:
+                self.bateria -= gasto
+                print(f"Chamada efetuada! Bateria: {self.bateria}%")
             else:
-                print(f"📱 Bateria em {nivel}%. O telemóvel está normal para uso.")
-
+                print("Bateria insuficiente.")
         except ValueError:
-            # Captura se o utilizador digitar "dez" em vez de "10"
-            print("Erro Crítico: Você não digitou um número válido. Tente novamente.")
+            print("Erro: A duração deve ser um número inteiro!")
+        except TypeError:
+            print("Erro crítico: Sistema de bateria encontrou erro de tipo.")
 
-# --- Execução ---
 meu_celular = Celular("Samsung", "S24")
-meu_celular.verificar_status()
+meu_celular.fazer_chamada("Dez") # Teste de erro
 ```
 
+## 🚀 Como implementar
+
+1. **Instale o Requests**: Use o comando `pip` mencionado acima.
+
+2. **Crie os arquivos**: Salve cada bloco de código em um arquivo `.py` (ex: `modulo09_aula.py`)
+
+3. **Markdown**: Para usar este guia, basta copiar o texto acima e colar em um arquivo chamado `README.md`.
+---
 
 # intro_poo_api_cdt
 Este repositório é seu guia completo para os **fundamentos da Programação Orientada a Objetos (POO)** e o **uso prático de APIs**, tudo com a **Python**.
