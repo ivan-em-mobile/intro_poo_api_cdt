@@ -146,61 +146,7 @@ def verificar_status(nivel_texto):
     except ValueError:
         print("Erro Crítico: Entrada inválida.")
 ```
-
 ---
-
-## 🛠️ Módulo 09: Tratamento de Erros (Exceptions)
-Aprender a gerir erros é essencial para criar software robusto. Utilizamos a estrutura `try`, `except`, `else` e `finally`.
-
-### 1. Explicação Básica (`explicacao_mod09.py`)
-Captura erros de lógica matemática e entradas inválidas.
-```python
-def aula_tratamento_erros():
-    print("--- Início da Aula de Exceções ---")
-    try:
-        numerador = int(input("Digita o numerador: "))
-        denominador = int(input("Digita o denominador: "))
-        resultado = numerador / denominador
-    except ValueError:
-        print("Erro: Por favor, digita apenas números inteiros!")
-    except ZeroDivisionError:
-        print("Erro: Não pode dividir um número por zero.")
-    except Exception as erro:
-        print(f"Ocorreu um erro inesperado: {erro}")
-    else:
-        print(f"Sucesso! O resultado é: {resultado}")
-    finally:
-        print("--- Fim da operação ---")
-
-aula_tratamento_erros()
-```
-
-### 2. POO e Exceções (`exercicio_mod09_bateria.py`)
-Simulação de um sistema de celular lidando com dados corrompidos ou entradas de texto.
-```python
-class Celular:
-    def __init__(self, marca, modelo):
-        self.marca = marca
-        self.modelo = modelo
-        self.bateria = 100 
-
-    def fazer_chamada(self, duracao):
-        try:
-            gasto = int(duracao) * 2 
-            if self.bateria >= gasto:
-                self.bateria -= gasto
-                print(f"Chamada efetuada! Bateria: {self.bateria}%")
-            else:
-                print("Bateria insuficiente.")
-        except ValueError:
-            print("Erro: A duração deve ser um número inteiro!")
-        except TypeError:
-            print("Erro crítico: Sistema de bateria encontrou erro de tipo.")
-
-meu_celular = Celular("Samsung", "S24")
-meu_celular.fazer_chamada("Dez") # Teste de erro
-```
-
 ## 🚀 Como implementar
 
 1. **Instale o Requests**: Use o comando `pip` mencionado acima.
