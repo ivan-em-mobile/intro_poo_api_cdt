@@ -3,7 +3,7 @@ A lidar com `Exceptions` (erros). Usaremos a estrutura `try`, `except`, `else` e
 
 # 🚀 Tutorial Completo: Tratamento de Erros
 
-## 1. O Básico: Divisão Segura
+## 1. explicacao_mod09.py
 Captura erros de matemática e de digitação.
 ```python
 def aula_tratamento_erros():
@@ -41,7 +41,7 @@ def aula_tratamento_erros():
 aula_tratamento_erros()
 ```
 
-## 2. POO: Convertendo Duração
+## 2. exercicio_mod09_teste_de_mesa.py
 Trata o erro quando o utilizador escreve o tempo por extenso.
 ```python
 class Celular:
@@ -81,7 +81,7 @@ meu_celular = Celular("Samsung", "S24")
 meu_celular.fazer_chamada("Dez")
 ```
 
-## 3. POO: Proteção de Tipos
+## 3. exercicio_mod09_com_usuario.py
 Usa o `TypeError` para evitar que o sistema tente subtrair texto de números.
 ```python
 class Celular:
@@ -124,7 +124,7 @@ meu_celular.fazer_chamada(10)
 meu_celular.fazer_chamada("muito")
 ```
 
-## 4. O Desafio Final: Status da Bateria
+## 4. exercicio_mod09_teste_com_programador.py
 Mistura tratamento de `float` com lógica de decisão `if/elif/else`.
 ```python
 class Celular:
