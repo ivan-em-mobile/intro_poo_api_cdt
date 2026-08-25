@@ -14,37 +14,23 @@ class BonecoToyStory:
         self.dono = dono
         self.frase_de_efeito = frase_de_efeito
 
-
-
 woody = BonecoToyStory(
     nome = "Woody",
     dono = "Andy",
     frase_de_efeito = "Há uma cobra na minha bota!"
 )
 
-
-# betty
-
-
-
-# buzz
-
-
-
 # sr_potato
+sr_potato = BonecoToyStory(
+    nome = "sr_potato",
+    dono = "Andy",
+    frase_de_efeito = "Ahnnnn...."
+)
 
-
-
+print(f'Nome: {woody.nome} | Dono: {woody.dono} | frase: {woody.frase_de_efeito}')
 #jessie
-
-
-
+# buzz
+# betty
 # rex
-
-
-
 # slinky
-
-
-
 # fork
